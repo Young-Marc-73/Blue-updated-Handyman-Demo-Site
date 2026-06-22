@@ -1,0 +1,32 @@
+# Your Local Handyman — robots.txt
+# Allow all reputable crawlers (search + AI)
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+
+# Be explicit for AI crawlers — they appreciate it
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://yourlocalhandyman.com/sitemap.xml

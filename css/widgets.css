@@ -1,0 +1,344 @@
+/* ============================================================
+   widgets.css — North Harbor add-ons (shared across all color
+   templates). Everything here reads the template's own color
+   tokens (--color-science-blue*, neutrals) so it auto-themes
+   blue / orange / green with zero edits.
+   Contains: hero lead form · Google reviews carousel ·
+   lead-gen chatbot · cookie-free, no external deps.
+   ============================================================ */
+
+/* ---------- 1. HERO LEAD FORM (homepage only) ---------- */
+/* Two-column hero when a form is present */
+.hero--lead .hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2.5rem;
+  justify-content: center;
+}
+@media (min-width: 992px) {
+  .hero--lead .hero-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+  }
+  .hero--lead .hero-content { flex: 1 1 0; max-width: 34rem; }
+  .hero--lead .hero-form-wrap { flex: 0 0 26rem; }
+}
+
+.hero-form-wrap { width: 100%; max-width: 30rem; }
+
+/* The translucent card — ~75% see-through over the hero image */
+.hero-form {
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-lg, 1rem);
+  box-shadow: 0 1.5rem 3rem rgba(2, 9, 4, 0.35);
+  padding: 1.75rem;
+}
+@media (min-width: 768px) { .hero-form { padding: 2rem; } }
+
+.hero-form__head { margin-bottom: 1.25rem; }
+.hero-form__head h2 {
+  font-family: "Poppins", system-ui, sans-serif;
+  color: var(--color-neutral-darkest);
+  font-size: var(--text-h5, 1.5rem);
+  line-height: 1.15;
+  margin: 0;
+}
+.hero-form__speed {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: var(--text-regular, 0.875rem); font-weight: 600;
+  color: var(--color-science-blue-dark);
+}
+.hero-form__speed::before {
+  content: ""; width: 0.5rem; height: 0.5rem; border-radius: 50%;
+  background: var(--color-science-blue); display: inline-block;
+  animation: hf-pulse 2s infinite;
+}
+@keyframes hf-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* Form controls inherit the template's .field/.label/.input/.select,
+   we only adjust them for legibility on the translucent card */
+.hero-form .form-grid { gap: 0.9rem; max-width: none; }
+.hero-form .label { color: var(--color-neutral-darkest); font-weight: 600; }
+.hero-form .input,
+.hero-form .select {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(2, 9, 4, 0.18);
+  color: var(--color-neutral-darkest);
+}
+.hero-form .input::placeholder { color: var(--color-neutral-dark); }
+.hero-form .btn { width: 100%; justify-content: center; }
+.hero-form__note {
+  margin-top: 0.85rem; text-align: center;
+  font-size: var(--text-small, 0.8125rem); color: var(--color-neutral-darker);
+}
+.hero-form__success { text-align: center; padding: 1.5rem 0.5rem; }
+.hero-form__success-icon {
+  width: 3.5rem; height: 3.5rem; margin: 0 auto 0.75rem;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: var(--color-science-blue); color: #fff;
+}
+.hero-form__success-icon svg { width: 1.75rem; height: 1.75rem; }
+.hero-form__success h3 { font-family: "Poppins", sans-serif; margin: 0 0 0.35rem; color: var(--color-neutral-darkest); }
+.hero-form__success p { color: var(--color-neutral-darker); margin: 0; }
+
+/* ---------- 2. GOOGLE REVIEWS CAROUSEL ---------- */
+.greviews { max-width: 60rem; margin: 0 auto; }
+.greviews__card {
+  background: var(--color-white);
+  border: 1px solid var(--color-scheme-border);
+  border-radius: var(--radius-lg, 1rem);
+  box-shadow: 0 0.25rem 1.5rem rgba(2, 9, 4, 0.08);
+  padding: 1.75rem;
+}
+@media (min-width: 768px) { .greviews__card { padding: 2rem; } }
+.greviews__head {
+  display: flex; align-items: center; gap: 1rem;
+  flex-wrap: wrap; margin-bottom: 1.5rem;
+}
+.greviews__glogo {
+  width: 2.75rem; height: 2.75rem; flex-shrink: 0;
+}
+.greviews__head-info { flex: 1; min-width: 12rem; }
+.greviews__biz {
+  font-family: "Poppins", sans-serif; font-weight: 600;
+  font-size: var(--text-large, 1.125rem); color: var(--color-neutral-darkest);
+}
+.greviews__rating { display: flex; align-items: center; gap: 0.5rem; font-size: var(--text-regular); color: var(--color-neutral-dark); }
+.greviews__rating-num { font-weight: 700; color: var(--color-neutral-darkest); }
+.greviews__stars { color: #f5a623; letter-spacing: 1px; }
+.greviews__verified {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: var(--text-small); color: var(--color-neutral-dark);
+}
+.greviews__track {
+  display: flex; gap: 1rem; overflow-x: auto;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem; scrollbar-width: none;
+}
+.greviews__track::-webkit-scrollbar { display: none; }
+.greview {
+  flex: 0 0 17.5rem; scroll-snap-align: start;
+  background: var(--color-scheme-foreground, #f7f7f7);
+  border: 1px solid var(--color-scheme-border);
+  border-radius: var(--radius, 0.75rem);
+  padding: 1.25rem; display: flex; flex-direction: column; gap: 0.65rem;
+}
+.greview__top { display: flex; align-items: center; gap: 0.65rem; }
+.greview__avatar {
+  width: 2.25rem; height: 2.25rem; border-radius: 50%; flex-shrink: 0;
+  background: var(--color-science-blue); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: var(--text-regular);
+}
+.greview__name { font-weight: 600; font-size: var(--text-regular); color: var(--color-neutral-darkest); }
+.greview__meta { display: flex; align-items: center; gap: 0.35rem; font-size: var(--text-small); color: var(--color-neutral-dark); }
+.greview__gicon { width: 0.85rem; height: 0.85rem; }
+.greview__stars { color: #f5a623; font-size: var(--text-regular); letter-spacing: 1px; }
+.greview__text { font-size: var(--text-regular); color: var(--color-neutral-darker); line-height: 1.55; flex: 1; }
+.greviews__foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 1.25rem; }
+.greviews__nav { display: flex; gap: 0.5rem; }
+.greviews__nav button {
+  width: 2.5rem; height: 2.5rem; border-radius: 50%;
+  border: 1px solid var(--color-scheme-border); background: var(--color-white);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--color-neutral-darkest); transition: background 0.18s ease, color 0.18s ease;
+}
+.greviews__nav button:hover { background: var(--color-science-blue); color: #fff; border-color: var(--color-science-blue); }
+.greviews__nav svg { width: 1.1rem; height: 1.1rem; }
+
+/* ---------- 3. LEAD-GEN CHATBOT ---------- */
+.nhd-chat-launcher {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 99998;
+  width: 3.75rem; height: 3.75rem; border-radius: 50%;
+  background: var(--color-science-blue); color: #fff;
+  border: none; cursor: pointer; box-shadow: 0 0.5rem 1.5rem rgba(2, 9, 4, 0.28);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s ease;
+}
+.nhd-chat-launcher:hover { transform: scale(1.07); }
+.nhd-chat-launcher svg { width: 1.75rem; height: 1.75rem; fill: currentColor; }
+.nhd-chat-launcher__close { display: none; }
+.nhd-chat-launcher.open .nhd-chat-launcher__open { display: none; }
+.nhd-chat-launcher.open .nhd-chat-launcher__close { display: block; }
+.nhd-chat-launcher__badge {
+  position: absolute; top: -0.15rem; right: -0.15rem;
+  min-width: 1.25rem; height: 1.25rem; padding: 0 0.25rem; border-radius: 0.75rem;
+  background: var(--color-burning-orange, #ff6b35); color: #fff;
+  font-size: 0.7rem; font-weight: 700; font-family: "Inter", sans-serif;
+  display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
+}
+.nhd-chat-launcher.open .nhd-chat-launcher__badge { display: none; }
+
+.nhd-chat {
+  position: fixed; bottom: 6rem; right: 1.5rem; z-index: 99999;
+  width: 23.5rem; max-width: calc(100vw - 2rem);
+  height: 33rem; max-height: calc(100vh - 7.5rem);
+  background: var(--color-white);
+  border-radius: var(--radius-lg, 1rem); overflow: hidden;
+  box-shadow: 0 1.5rem 3.5rem rgba(2, 9, 4, 0.28);
+  display: none; flex-direction: column;
+  font-family: "Inter", system-ui, sans-serif;
+}
+.nhd-chat.open { display: flex; animation: nhd-chat-in 0.25s ease; }
+@keyframes nhd-chat-in { from { opacity: 0; transform: translateY(0.75rem); } to { opacity: 1; transform: none; } }
+
+.nhd-chat__header {
+  background: var(--color-science-blue-darker, #04284d); color: #fff;
+  padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0;
+}
+.nhd-chat__avatar {
+  width: 2.5rem; height: 2.5rem; border-radius: 50%; flex-shrink: 0;
+  background: var(--color-science-blue); display: flex; align-items: center; justify-content: center;
+}
+.nhd-chat__avatar svg { width: 1.4rem; height: 1.4rem; fill: #fff; }
+.nhd-chat__title { font-family: "Poppins", sans-serif; font-weight: 600; font-size: var(--text-regular, 0.95rem); }
+.nhd-chat__status { font-size: var(--text-small, 0.78rem); opacity: 0.85; display: flex; align-items: center; gap: 0.35rem; }
+.nhd-chat__status::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #4ade80; }
+
+.nhd-chat__body {
+  flex: 1; overflow-y: auto; padding: 1rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+  background: var(--color-neutral-lightest, #f2f2f2);
+}
+.nhd-chat__body::-webkit-scrollbar { width: 0.25rem; }
+.nhd-chat__body::-webkit-scrollbar-thumb { background: var(--color-neutral-light); border-radius: 0.25rem; }
+
+.nhd-bubble {
+  max-width: 85%; padding: 0.65rem 0.9rem; font-size: var(--text-regular, 0.9rem);
+  line-height: 1.5; word-wrap: break-word; animation: nhd-fade 0.25s ease;
+}
+@keyframes nhd-fade { from { opacity: 0; transform: translateY(0.4rem); } to { opacity: 1; transform: none; } }
+.nhd-bubble--bot {
+  background: var(--color-white); color: var(--color-neutral-darkest);
+  border-radius: 0.25rem 1rem 1rem 1rem; align-self: flex-start;
+  box-shadow: 0 1px 4px rgba(2, 9, 4, 0.07);
+}
+.nhd-bubble--user {
+  background: var(--color-science-blue); color: #fff;
+  border-radius: 1rem 0.25rem 1rem 1rem; align-self: flex-end;
+}
+.nhd-bubble--bot a { color: var(--color-science-blue); font-weight: 600; text-decoration: none; }
+.nhd-bubble--bot a:hover { text-decoration: underline; }
+
+.nhd-options {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; align-self: flex-end;
+  max-width: 92%; justify-content: flex-end; animation: nhd-fade 0.3s ease;
+}
+.nhd-option {
+  padding: 0.5rem 0.85rem; border-radius: 1.25rem;
+  border: 1.5px solid var(--color-science-blue); background: var(--color-white);
+  color: var(--color-science-blue); font-size: var(--text-small, 0.82rem); font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: background 0.15s ease, color 0.15s ease;
+}
+.nhd-option:hover { background: var(--color-science-blue); color: #fff; }
+
+.nhd-typing {
+  display: flex; gap: 0.25rem; align-self: flex-start; padding: 0.75rem 1rem;
+  background: var(--color-white); border-radius: 0.25rem 1rem 1rem 1rem;
+  box-shadow: 0 1px 4px rgba(2, 9, 4, 0.07);
+}
+.nhd-typing span { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--color-neutral-light); animation: nhd-dot 1.2s infinite; }
+.nhd-typing span:nth-child(2) { animation-delay: 0.2s; }
+.nhd-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes nhd-dot { 0%, 60%, 100% { opacity: 0.3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-0.25rem); } }
+
+.nhd-chat__inputbar {
+  display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem;
+  border-top: 1px solid var(--color-scheme-border, rgba(2,9,4,.12)); background: var(--color-white); flex-shrink: 0;
+}
+.nhd-chat__input {
+  flex: 1; padding: 0.65rem 0.9rem; border: 1.5px solid var(--color-neutral-lighter);
+  border-radius: 1.5rem; font-size: var(--text-regular, 0.9rem); font-family: inherit;
+  outline: none; color: var(--color-neutral-darkest); transition: border-color 0.18s ease;
+}
+.nhd-chat__input:focus { border-color: var(--color-science-blue); }
+.nhd-chat__send {
+  width: 2.4rem; height: 2.4rem; border-radius: 50%; flex-shrink: 0;
+  background: var(--color-science-blue); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: background 0.18s ease;
+}
+.nhd-chat__send:hover { background: var(--color-science-blue-dark); }
+.nhd-chat__send svg { width: 1.1rem; height: 1.1rem; fill: #fff; }
+
+@media (max-width: 30rem) {
+  .nhd-chat { bottom: 0; right: 0; width: 100%; height: 100%; max-height: 100vh; border-radius: 0; }
+  .nhd-chat-launcher { bottom: 1rem; right: 1rem; }
+}
+
+/* ---------- 4. FACEBOOK FEED (reviews page) ---------- */
+/* Auto-themes from template tokens; keeps Facebook brand blue for FB chrome. */
+.fbfeed { max-width: 42rem; margin: 0 auto; }
+.nhd-fb {
+  --fb-blue: #1877f2;
+  background: var(--color-white);
+  border: 1px solid var(--color-scheme-border);
+  border-radius: var(--radius-lg, 1rem);
+  box-shadow: 0 0.25rem 1.5rem rgba(2, 9, 4, 0.08);
+  overflow: hidden;
+  font-family: "Inter", system-ui, sans-serif;
+}
+.nhd-fb__header {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--color-scheme-border);
+}
+.nhd-fb__header-icon { width: 1.75rem; height: 1.75rem; flex-shrink: 0; }
+.nhd-fb__header-name {
+  font-family: "Poppins", sans-serif; font-weight: 600;
+  font-size: var(--text-large, 1.0625rem); color: var(--color-neutral-darkest); flex: 1;
+}
+.nhd-fb__header-follow {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 1.1rem; border-radius: 0.4rem;
+  background: var(--fb-blue); color: #fff; font-weight: 600;
+  font-size: var(--text-small, 0.8125rem); text-decoration: none;
+  transition: background 0.2s; border: none; cursor: pointer;
+}
+.nhd-fb__header-follow:hover { background: #1565d8; }
+.nhd-fb__header-follow svg { width: 0.9rem; height: 0.9rem; fill: currentColor; }
+.nhd-fb__grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+.nhd-fb__post { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--color-scheme-border); }
+.nhd-fb__post:last-child { border-bottom: none; }
+.nhd-fb__post-top { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.75rem; }
+.nhd-fb__post-avatar {
+  width: 2.5rem; height: 2.5rem; border-radius: 50%; flex-shrink: 0;
+  background: var(--color-science-blue); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: var(--text-small, 0.8rem); font-family: "Poppins", sans-serif;
+}
+.nhd-fb__post-meta { flex: 1; }
+.nhd-fb__post-author { font-weight: 600; font-size: var(--text-regular, 0.9rem); color: var(--color-neutral-darkest); }
+.nhd-fb__post-date { font-size: var(--text-small, 0.75rem); color: var(--color-neutral-dark); }
+.nhd-fb__post-text { font-size: var(--text-regular, 0.9rem); color: var(--color-neutral-darker); line-height: 1.6; margin-bottom: 0.75rem; }
+.nhd-fb__post-text a { color: var(--fb-blue); text-decoration: none; font-weight: 600; }
+.nhd-fb__post-text a:hover { text-decoration: underline; }
+.nhd-fb__post-images { border-radius: 0.5rem; overflow: hidden; margin-bottom: 0.75rem; }
+.nhd-fb__post-images.single img { width: 100%; max-height: 25rem; object-fit: cover; display: block; }
+.nhd-fb__post-images.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.nhd-fb__post-images.duo img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+.nhd-fb__post-images.trio { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.nhd-fb__post-images.trio img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+.nhd-fb__post-images.trio img:first-child { grid-column: 1 / 3; aspect-ratio: 16 / 9; }
+.nhd-fb__post-reactions {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  padding-top: 0.65rem; border-top: 1px solid var(--color-scheme-border);
+  font-size: var(--text-small, 0.8125rem); color: var(--color-neutral-dark);
+}
+.nhd-fb__post-reactions span { display: flex; align-items: center; gap: 0.25rem; }
+.nhd-fb__footer {
+  padding: 1rem 1.5rem; text-align: center;
+  background: var(--color-neutral-lightest); border-top: 1px solid var(--color-scheme-border);
+}
+.nhd-fb__footer a {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.65rem 1.5rem; border-radius: 0.5rem;
+  background: var(--fb-blue); color: #fff; font-weight: 600;
+  font-size: var(--text-regular, 0.875rem); text-decoration: none; transition: background 0.2s;
+}
+.nhd-fb__footer a:hover { background: #1565d8; }
+.nhd-fb__footer a svg { fill: currentColor; }

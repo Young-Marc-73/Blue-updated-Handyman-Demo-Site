@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found — Your Local Handyman</title>
+  <meta name="description" content="The page you're looking for doesn't exist." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" type="image/svg+xml" href="logo/logo-light.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/widgets.css" />
+</head>
+<body>
+<header class="navbar scheme-4">
+  <nav class="container navbar-inner" aria-label="Primary">
+    <a href="index.html" class="navbar-logo" aria-label="Your Local Handyman — Home">
+      <img src="logo/logo-dark.svg" alt="Your Local Handyman" />
+    </a>
+    <div class="navbar-links">
+      <a href="index.html">Home</a>
+      <a href="repair.html">Services</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="contact.html" class="btn btn-sm btn-secondary">Quote</a>
+      <a href="tel:+16195550147" class="btn btn-sm btn-primary">Call</a>
+    </div>
+  </nav>
+</header>
+<main id="main">
+  <section class="page-header scheme-1" style="min-height: 60vh; display: flex; align-items: center;">
+    <div class="container" style="text-align: center;">
+      <p class="text-small font-semibold" style="color: var(--color-science-blue); letter-spacing: 0.1em;">ERROR 404</p>
+      <h1 class="font-bold mt-4">This page took the day off</h1>
+      <p class="lead muted mt-6" style="max-width: 32rem; margin-inline: auto;">The page you're looking for doesn't exist or has moved. Try one of the links below.</p>
+      <div class="actions" style="justify-content: center; display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+        <a href="index.html" class="btn btn-primary">Back to home</a>
+        <a href="contact.html" class="btn btn-secondary">Contact us</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer scheme-5" style="padding-block: 2rem;">
+  <div class="container" style="text-align: center;">
+    <p class="text-small">© <span id="footer-year">2026</span> Your Local Handyman. All rights reserved.</p>
+  </div>
+</footer>
+<script>document.getElementById("footer-year").textContent = new Date().getFullYear();</script>
+<script src="js/site-widgets.js" defer></script>
+</body>
+</html>
