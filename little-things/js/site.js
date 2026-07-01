@@ -1,5 +1,5 @@
 /* =========================================================
-   Your Local Handyman — Site script
+   Little Things Handyman — Site script
    Handles navbar, dropdown, accordion, carousel
    ========================================================= */
 
@@ -160,7 +160,7 @@
           '<div style="font-size:3rem;margin-bottom:.5rem">\u2705</div>' +
           '<h4 style="font-family:Poppins,system-ui,sans-serif;font-weight:400;margin-bottom:.4rem">Quote request received!</h4>' +
           '<p style="color:var(--color-neutral);font-size:var(--text-regular)">We\u2019ll call you back within 15 minutes during business hours.</p>' +
-          '<p style="margin-top:1rem;font-size:var(--text-regular)">Can\u2019t wait? Call <a href="tel:+16195550147" style="color:var(--color-science-blue);font-weight:600">(619) 555-0147</a></p>' +
+          '<p style="margin-top:1rem;font-size:var(--text-regular)">Can\u2019t wait? Call <a href="tel:+12037707216" style="color:var(--color-science-blue);font-weight:600">(203) 770-7216</a></p>' +
           '</div>';
       });
     });
@@ -179,13 +179,13 @@
     if (document.getElementById("chatLauncher")) return;
 
     var BIZ = {
-      name: "Your Local Handyman",
-      phone: "(619) 555-0147",
-      phoneTel: "16195550147",
-      email: "hello@yourlocalhandyman.com",
+      name: "Little Things Handyman",
+      phone: "(203) 770-7216",
+      phoneTel: "12037707216",
+      email: "hello@littlethingshandyman.com",
       hours: "Mon\u2013Sat 7 AM \u2013 6 PM",
       emergency: "Yes \u2014 same-week service for most jobs, and we prioritize urgent issues",
-      area: "all of San Diego County \u2014 from Pacific Beach and La Jolla to Chula Vista and El Cajon",
+      area: "all of Danbury and nearby towns",
       reviewUrl: "reviews.html"
     };
 

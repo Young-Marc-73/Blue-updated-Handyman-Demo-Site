@@ -47,7 +47,7 @@
 </footer>
 <script>document.getElementById("footer-year").textContent = new Date().getFullYear();</script>
 <!--
-  NHD DEMO RIBBON + STICKY CTA
+  NHD DEMO RIBBON + STICKY CTA  (v2 — orange, eye-catching)
   Purpose: when a PROSPECT lands on the handyman demo, tell them what they're
   looking at and give one obvious next step (book a consult). Markup-agnostic —
   it overlays via fixed positioning, so you don't need to touch the existing HTML.
@@ -57,48 +57,65 @@
   demo's index.html (and any other demo pages you send). Nothing else to change.
   To remove for a LIVE client site, just delete this block.
 
-  Brand: NHD navy #11284C, accent blue #3A86FF.
-  Consult link: https://app.suitedash.com/frm/z8nb3PoHovHaKW5P
+  Brand: NHD navy #11284C, demo accent = Burning Orange #ff6b35 (matches the
+  template's form button). Consult link: https://app.suitedash.com/frm/z8nb3PoHovHaKW5P
 -->
 <style>
-  :root { --nhd-navy:#11284C; --nhd-blue:#3A86FF; }
+  :root { --nhd-navy:#11284C; --nhd-orange:#ff6b35; --nhd-orange-dk:#cc552a; }
   /* push page content down so the top ribbon never covers the logo */
-  body { padding-top: 44px; }
+  body { padding-top: 40px; }
   #nhd-ribbon {
     position: fixed; top: 0; left: 0; right: 0; z-index: 99999;
-    background: var(--nhd-navy); color: #fff;
-    font: 600 14px/1.3 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: #b8481f;
+    color: #fff;
+    font: 600 13px/1.3 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     display: flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 11px 44px 11px 14px; text-align: center;
+    padding: 8px 42px 8px 14px; text-align: center;
+    box-shadow: 0 1px 8px rgba(0,0,0,.25);
   }
-  #nhd-ribbon a { color: var(--nhd-blue); text-decoration: underline; white-space: nowrap; }
+  #nhd-ribbon .nhd-book {
+    background: #fff; color: var(--nhd-orange-dk); text-decoration: none;
+    padding: 4px 12px; border-radius: 6px; font-weight: 700; white-space: nowrap;
+    animation: nhd-pulse 2s ease-in-out infinite;
+  }
+  #nhd-ribbon .nhd-book:hover { animation: none; }
+  @keyframes nhd-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,.6); }
+    50%      { box-shadow: 0 0 0 5px rgba(255,255,255,0); }
+  }
   #nhd-ribbon .nhd-x {
     position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-    cursor: pointer; opacity: .7; font-size: 18px; line-height: 1; background: none; border: 0; color: #fff;
+    cursor: pointer; opacity: .8; font-size: 17px; line-height: 1; background: none; border: 0; color: #fff;
   }
   #nhd-cta {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999;
     background: var(--nhd-navy); color: #fff;
     display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
-    padding: 13px 16px; box-shadow: 0 -2px 14px rgba(0,0,0,.25);
+    padding: 13px 16px; box-shadow: 0 -2px 14px rgba(0,0,0,.28);
     font: 500 15px/1.3 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   }
-  #nhd-cta strong { font-weight: 700; }
+  #nhd-cta strong { font-weight: 800; }
   #nhd-cta .nhd-btn {
-    background: var(--nhd-blue); color: #fff; text-decoration: none;
-    padding: 10px 20px; border-radius: 8px; font-weight: 700; white-space: nowrap;
+    background: var(--nhd-orange); color: #fff; text-decoration: none;
+    padding: 10px 20px; border-radius: 8px; font-weight: 800; white-space: nowrap;
   }
-  #nhd-cta .nhd-btn:hover { filter: brightness(1.08); }
+  #nhd-cta .nhd-btn:hover { background: var(--nhd-orange-dk); }
+  #nhd-cta .nhd-btn.nhd-btn--call { background: transparent; border: 1.5px solid var(--nhd-orange); }
+  /* Keep the site's chat bot clear of (and above) the sticky CTA bar,
+     so the lead can see it's a chat bot and click it. */
+  .nhd-chat-launcher { bottom: 88px !important; z-index: 100001 !important; }
+  .nhd-chat-window   { bottom: 158px !important; z-index: 100001 !important; }
   @media (max-width: 560px) {
-    #nhd-ribbon { font-size: 12.5px; padding-right: 38px; }
+    #nhd-ribbon { font-size: 12.5px; padding-right: 40px; gap: 8px; }
     #nhd-cta { font-size: 14px; gap: 10px; padding: 11px 12px; }
     #nhd-cta .nhd-sub { display: none; } /* hide the long line on phones */
+    .nhd-chat-launcher { bottom: 92px !important; }
   }
 </style>
 
 <div id="nhd-ribbon">
-  <span>👋 This is a <strong>demo</strong> by North Harbor Digital — imagine it's <em>your</em> business.</span>
-  <a href="https://app.suitedash.com/frm/z8nb3PoHovHaKW5P" target="_blank" rel="noopener">Want yours? Book 15 min →</a>
+  <span>👋 This <strong>demo</strong> was built for you by North Harbor Digital.</span>
+  <a class="nhd-book" href="https://app.suitedash.com/frm/z8nb3PoHovHaKW5P" target="_blank" rel="noopener">Make it yours — book 15 min →</a>
   <button class="nhd-x" aria-label="Hide" onclick="document.getElementById('nhd-ribbon').remove();document.body.style.paddingTop='0'">×</button>
 </div>
 
@@ -106,7 +123,7 @@
   <span class="nhd-sub">A site like this, live in about 48 hours —</span>
   <strong>$799 flat. No monthly trap.</strong>
   <a class="nhd-btn" href="https://app.suitedash.com/frm/z8nb3PoHovHaKW5P" target="_blank" rel="noopener">Get a site like this →</a>
-  <a class="nhd-btn" href="tel:+15169077001" style="background:transparent;border:1.5px solid #3A86FF;">Call Marc</a>
+  <a class="nhd-btn nhd-btn--call" href="tel:+15169077001">Call Marc</a>
 </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /* =========================================================
-   Your Local Handyman — Site stylesheet
+   C M Handyman Solutions — Site stylesheet
    Built from DESIGN.md tokens + globals.css
    ========================================================= */
 
@@ -1184,3 +1184,22 @@ h6 { font-size: var(--text-h6); line-height: 1.4; }
   z-index: 10000;
 }
 .skip-link:focus { top: 0; }
+
+/* ---- NHD demo: prominent personalized business name ---- */
+.lead-hero__bizname {
+  font-family: "Poppins", system-ui, sans-serif; font-weight: 800;
+  color: #ffffff;
+  font-size: clamp(1.9rem, 4.6vw, 3rem); line-height: 1.04;
+  letter-spacing: -0.01em; margin-bottom: 0.5rem;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.35);
+}
+.lead-hero__bizloc {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: rgba(255,255,255,0.72); font-weight: 700;
+  font-size: var(--text-small); letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+.lead-hero__bizloc::before {
+  content: ""; width: 1.75rem; height: 2px; background: var(--color-burning-orange);
+  display: inline-block; border-radius: 1px;
+}
