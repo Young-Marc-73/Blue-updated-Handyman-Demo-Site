@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="34" viewBox="0 0 200 34" fill="none">
+  
+  <g>
+    <path d="M5 8 L13 8 L15 6 L21 6 L23 8 L23 14 L21 16 L15 16 L13 14 L11 14 L11 28 L7 28 L7 14 L5 14 Z" fill="#FF6B35"></path>
+  </g>
+  
+  <text x="30" y="14" font-family="Poppins, sans-serif" font-weight="600" font-size="11" fill="#FFFFFF" letter-spacing="-0.3">YOUR LOCAL</text>
+  <text x="30" y="28" font-family="Poppins, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" letter-spacing="-0.5">HANDYMAN</text>
+</svg>
