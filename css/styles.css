@@ -1215,3 +1215,13 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
   z-index: 10000;
 }
 .skip-link:focus { top: 0; }
+
+/* =========================================================
+   "Bigger projects" — even, aligned cards (equal heights)
+   Uniform image crop + flex body so every CTA lines up.
+   ========================================================= */
+.projects-even > .card { height: 100%; }
+.projects-even .img-wrap { aspect-ratio: 16 / 10; overflow: hidden; }
+.projects-even .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.projects-even .card-pad { display: flex; flex-direction: column; flex: 1; }
+.projects-even .card-pad .mt-6 { margin-top: auto; }

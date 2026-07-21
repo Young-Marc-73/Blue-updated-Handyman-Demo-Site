@@ -169,7 +169,7 @@
 (function () {
   "use strict";
   var REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var PHONE = "tel:+16195550147";
+  var PHONE = "tel:+15169077001";
 
   /* ---- Sticky, condensing navbar ---- */
   function initCondenseNav() {

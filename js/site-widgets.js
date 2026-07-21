@@ -15,9 +15,9 @@
      ════════════════════════════════════════════════════════ */
   var BIZ = {
     name: "Your Local Handyman",
-    phone: "(619) 555-0147",
-    phoneTel: "16195550147",
-    email: "hello@yourlocalhandyman.com",
+    phone: "(516) 907-7001",
+    phoneTel: "15169077001",
+    email: "hello@handyman-demo-site.com",
     hours: "Mon–Sat, 7 AM – 6 PM",
     area: "all of San Diego County",
     emergency: "Yes — we offer same-week and urgent service"
