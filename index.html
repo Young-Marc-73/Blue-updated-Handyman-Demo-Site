@@ -226,6 +226,7 @@
     <div class="hero-bg">
       <img src="images/home-hero-header-section.jpg" alt="Handyman professional working on home repair" loading="eager" fetchpriority="high" />
     </div>
+    <div class="hero-aurora" aria-hidden="true"></div>
   </section>
 
   <!-- ============================================================
@@ -238,7 +239,7 @@
         <p class="muted">When the work demands skill and experience, we deliver outstanding results that exceed expectations.</p>
       </div>
 
-      <div class="grid-4">
+      <div class="grid-4 bento-grid">
         <article class="card">
           <div class="img-wrap"><img src="images/home-features-list-section-0.jpg" alt="Exterior maintenance" loading="lazy" /></div>
           <div class="card-pad">
@@ -290,6 +291,22 @@
       <div class="section-title">
         <h2 id="projects-title" class="font-bold">Work we've completed</h2>
         <p class="muted">Real projects from real homeowners in your local area — renovations, improvements, and transformations completed by our skilled team.</p>
+      </div>
+
+      <!-- Before / After comparison slider — drag the handle to compare -->
+      <div class="ba-wrap" style="max-width: 60rem; margin: 0 auto 3.5rem;">
+        <figure class="ba-figure">
+          <div class="ba-slider" aria-label="Deck restoration before and after — drag to compare">
+            <img class="ba-img ba-before" src="images/ba-deck-before.jpg" alt="Deck before restoration: weathered, faded, grey timber" loading="lazy" width="1200" height="900" />
+            <img class="ba-img ba-after" src="images/ba-deck-after.jpg" alt="Deck after restoration: sanded, richly stained and sealed" loading="lazy" width="1200" height="900" />
+            <div class="ba-divider" role="slider" tabindex="0" aria-label="Compare deck before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <span class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></span>
+            </div>
+            <span class="ba-label ba-label--before">Before</span>
+            <span class="ba-label ba-label--after">After</span>
+          </div>
+          <figcaption class="ba-caption"><strong>Deck restoration</strong> — the same boards, sanded, stained &amp; sealed. Drag the handle to compare before &amp; after.</figcaption>
+        </figure>
       </div>
 
       <div class="grid-3">
@@ -352,9 +369,9 @@
           <div class="greviews__head-info">
             <div class="greviews__biz">Your Local Handyman — San Diego</div>
             <div class="greviews__rating">
-              <span class="greviews__rating-num">5.0</span>
+              <span class="greviews__rating-num countup" data-countup data-to="5" data-decimals="1">5.0</span>
               <span class="greviews__stars" aria-label="5 out of 5">★★★★★</span>
-              <span>· 42 Google reviews</span>
+              <span>· <span class="countup" data-countup data-to="42">42</span> Google reviews</span>
             </div>
           </div>
           <span class="greviews__verified">

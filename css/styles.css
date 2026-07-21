@@ -936,6 +936,266 @@ h6 { font-size: var(--text-h6); line-height: 1.4; }
 .items-center { align-items: center; }
 .justify-center { justify-content: center; }
 .w-full { width: 100%; }
+
+/* =========================================================
+   ENHANCEMENTS LAYER  (North Harbor Digital — design polish)
+   Appended, non-destructive. Extends the existing token
+   system; every effect honors prefers-reduced-motion.
+   ========================================================= */
+
+:root {
+  /* — Refined radius scale (was mostly 0; subtle rounding reads premium) — */
+  --radius-button: 0.5rem;
+  --radius-card: 0.9rem;
+  --radius-image: 0.7rem;
+  --radius-form: 0.55rem;
+  --radius-pill: 999px;
+
+  /* — Shadow scale (navy-tinted, consistent elevation) — */
+  --shadow-xs: 0 1px 2px rgba(4,40,77,.06);
+  --shadow-sm: 0 2px 8px rgba(4,40,77,.08);
+  --shadow-md: 0 10px 28px -8px rgba(4,40,77,.16);
+  --shadow-lg: 0 20px 48px -14px rgba(4,40,77,.24);
+  --shadow-xl: 0 34px 74px -22px rgba(4,40,77,.32);
+
+  /* — Warm complementary accent (from existing Burning Orange) — */
+  --accent-warm: var(--color-burning-orange);
+  --accent-warm-dark: var(--color-burning-orange-dark);
+  --color-success: var(--color-mountain-meadow);
+  --color-error: #d64545;
+
+  /* — Motion — */
+  --ease-out: cubic-bezier(.22,1,.36,1);
+  --ease-spring: cubic-bezier(.34,1.4,.5,1);
+}
+
+/* — Consistent, accessible focus ring everywhere — */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--color-science-blue-light);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+.scheme-4 a:focus-visible, .scheme-4 button:focus-visible,
+.scheme-5 a:focus-visible, .scheme-5 button:focus-visible { outline-color: #fff; }
+
+.skip-link {
+  position: fixed; top: 0; left: 50%; transform: translate(-50%,-120%);
+  z-index: 1200; background: var(--color-science-blue); color: #fff;
+  padding: .6rem 1.1rem; border-radius: 0 0 var(--radius-button) var(--radius-button);
+  transition: transform .2s var(--ease-out);
+}
+.skip-link:focus { transform: translate(-50%,0); }
+
+/* — Buttons: gentle lift + shadow + smoother press — */
+.btn { transition: background-color .18s ease, color .18s ease, border-color .18s ease,
+                    transform .18s var(--ease-out), box-shadow .25s var(--ease-out); }
+.btn-primary { box-shadow: var(--shadow-sm); }
+.btn-primary:hover, .btn-alternate:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-primary:active, .btn-alternate:active, .btn:active { transform: translateY(0); }
+/* Warm accent button (used sparingly for high-intent CTAs) */
+.btn-warm { background: var(--accent-warm); color: #fff; border-color: var(--accent-warm); box-shadow: var(--shadow-sm); }
+.btn-warm:hover { background: var(--accent-warm-dark); border-color: var(--accent-warm-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* — Cards: unify on the shadow scale, add image zoom — */
+.card { box-shadow: var(--shadow-sm); transition: box-shadow .3s var(--ease-out), transform .3s var(--ease-out); }
+.card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.img-wrap { overflow: hidden; }
+.img-wrap img { transition: transform .6s var(--ease-out); }
+.card:hover .img-wrap img { transform: scale(1.06); }
+.badge { border-radius: var(--radius-pill); }
+
+/* =========================================================
+   Sticky, condensing navbar (global)
+   ========================================================= */
+.navbar {
+  transition: min-height .3s var(--ease-out), background-color .3s ease,
+              box-shadow .3s ease, backdrop-filter .3s ease, border-color .3s ease;
+  border-bottom: 1px solid transparent;
+  will-change: min-height, background-color;
+}
+.navbar-logo img { transition: height .3s var(--ease-out); }
+.navbar.is-scrolled {
+  min-height: 3.75rem;
+  background: rgba(4,40,77,.72);
+  -webkit-backdrop-filter: saturate(150%) blur(12px);
+  backdrop-filter: saturate(150%) blur(12px);
+  box-shadow: 0 8px 28px -10px rgba(2,9,4,.55);
+  border-bottom-color: rgba(255,255,255,.10);
+}
+.navbar.is-scrolled .navbar-inner { min-height: 3.75rem; }
+.navbar.is-scrolled .navbar-logo img { height: 27px; }
+
+/* =========================================================
+   Hero upgrade — layered gradient + soft aurora + entrance
+   ========================================================= */
+.hero-bg::after {
+  background: linear-gradient(180deg, rgba(4,40,77,.55) 0%, rgba(2,9,4,.42) 50%, rgba(2,9,4,.68) 100%);
+}
+.hero-aurora {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(42rem 26rem at 10% 12%, rgba(10,102,194,.42), transparent 60%),
+    radial-gradient(34rem 24rem at 92% 88%, rgba(255,107,53,.22), transparent 62%);
+  mix-blend-mode: screen; opacity: .85;
+  animation: heroAurora 20s ease-in-out infinite alternate;
+}
+@keyframes heroAurora {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to   { transform: translate3d(0,-2.5%,0) scale(1.08); }
+}
+/* subtle grain-free vignette to frame the hero */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  box-shadow: inset 0 0 12rem rgba(2,9,4,.45);
+}
+.hero-inner { z-index: 3; }
+/* Entrance */
+.hero-content h1 { animation: heroRise .85s var(--ease-out) both; }
+.hero-content p  { animation: heroRise .85s var(--ease-out) .12s both; }
+.hero-content .actions { animation: heroRise .85s var(--ease-out) .24s both; }
+.hero-form-wrap { animation: heroRise .9s var(--ease-out) .34s both; }
+@keyframes heroRise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+/* =========================================================
+   Bento grid (Bigger projects) — asymmetric + zoom
+   ========================================================= */
+.bento-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+@media (min-width: 768px) { .bento-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 992px) {
+  .bento-grid { grid-template-columns: repeat(3, 1fr); }
+  .bento-grid > :nth-child(1) { grid-column: span 2; }
+  .bento-grid > :nth-child(4) { grid-column: span 2; }
+}
+.bento-grid .card .img-wrap { aspect-ratio: 16/10; }
+.bento-grid .card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+/* =========================================================
+   Before / After comparison slider  (portfolio highlight)
+   Adapted from a 21st.dev Magic component into vanilla JS/CSS.
+   ========================================================= */
+.ba-wrap { display: grid; gap: 1.5rem; }
+@media (min-width: 900px) { .ba-wrap.ba-wrap--two { grid-template-columns: 1fr 1fr; } }
+.ba-figure { margin: 0; }
+.ba-caption { margin-top: .85rem; text-align: center; color: var(--color-neutral-dark); font-size: var(--text-regular); }
+.ba-caption strong { color: var(--color-neutral-darkest); font-weight: 600; }
+
+.ba-slider {
+  --pos: 50%;
+  position: relative; width: 100%; aspect-ratio: 3/2;
+  overflow: hidden; border-radius: var(--radius-image);
+  box-shadow: var(--shadow-lg); touch-action: none; user-select: none;
+  background: var(--color-neutral-lightest); cursor: ew-resize;
+}
+.ba-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; pointer-events: none; -webkit-user-drag: none;
+}
+.ba-after { clip-path: inset(0 0 0 var(--pos)); }
+.ba-divider {
+  position: absolute; top: 0; bottom: 0; left: var(--pos);
+  width: 2px; margin-left: -1px; background: rgba(255,255,255,.92);
+  box-shadow: 0 0 0 1px rgba(2,9,4,.12); z-index: 4; cursor: ew-resize;
+}
+.ba-handle {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 2.85rem; height: 2.85rem; border-radius: 50%;
+  background: #fff; color: var(--color-science-blue);
+  display: grid; place-items: center; box-shadow: var(--shadow-lg);
+  transition: transform .15s var(--ease-spring);
+}
+.ba-slider:hover .ba-handle, .ba-divider:focus-visible .ba-handle { transform: translate(-50%,-50%) scale(1.08); }
+.ba-divider:focus-visible { outline: none; }
+.ba-divider:focus-visible .ba-handle { box-shadow: var(--shadow-lg), 0 0 0 4px rgba(83,147,212,.6); }
+.ba-handle svg { width: 1.4rem; height: 1.4rem; }
+.ba-label {
+  position: absolute; bottom: .8rem; z-index: 4;
+  padding: .28rem .7rem; border-radius: var(--radius-pill);
+  font-size: var(--text-small); font-weight: 600; letter-spacing: .02em;
+  color: #fff; background: rgba(2,9,4,.62); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+.ba-label--before { left: .8rem; }
+.ba-label--after  { right: .8rem; background: rgba(10,102,194,.82); }
+
+/* =========================================================
+   Animated stat count-ups
+   ========================================================= */
+.countup { font-variant-numeric: tabular-nums; }
+
+/* =========================================================
+   Smooth accordion (animated open/close)
+   ========================================================= */
+.accordion-content {
+  display: block !important;   /* override base display:none so height can animate */
+  overflow: hidden;
+  max-height: 0;               /* JS animates this to the measured height and back to 0 */
+  padding: 0 1.5rem;
+  transition: max-height .34s var(--ease-out), padding .34s var(--ease-out);
+}
+.accordion-content > * { margin: 0; }
+.accordion-item[data-state="open"] .accordion-content { padding-top: 0; padding-bottom: 1.25rem; }
+.accordion-item { transition: box-shadow .25s var(--ease-out), border-color .25s ease; }
+.accordion-item[data-state="open"] { box-shadow: var(--shadow-md); border-color: rgba(10,102,194,.35); }
+.accordion-trigger:hover { color: var(--color-science-blue); }
+
+/* =========================================================
+   Sticky mobile "Call now" action bar (global, conversion)
+   ========================================================= */
+.call-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 950;
+  display: flex; gap: .6rem;
+  padding: .6rem .8rem calc(.6rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(4,40,77,.97); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 -8px 28px rgba(2,9,4,.32);
+  transform: translateY(130%); transition: transform .4s var(--ease-out);
+}
+.call-bar.show { transform: none; }
+@media (max-width: 767px) { body.has-callbar { padding-bottom: 4.5rem; } }
+.call-bar .btn { flex: 1; box-shadow: none; }
+.call-bar .btn-warm { flex: 1.3; }
+@media (min-width: 768px) { .call-bar { display: none; } }
+/* Lift the chat launcher above the call bar on mobile */
+@media (max-width: 767px) {
+  .nhd-chat-launcher { bottom: 5.25rem !important; }
+}
+
+/* =========================================================
+   Toast (form submit feedback)
+   ========================================================= */
+.toast-stack {
+  position: fixed; left: 50%; bottom: 1.25rem; transform: translateX(-50%);
+  z-index: 1300; display: flex; flex-direction: column; gap: .5rem; width: min(92vw, 24rem);
+}
+.toast {
+  display: flex; align-items: center; gap: .65rem;
+  background: var(--color-neutral-darkest); color: #fff;
+  padding: .8rem 1rem; border-radius: var(--radius-button);
+  box-shadow: var(--shadow-xl);
+  opacity: 0; transform: translateY(14px); transition: opacity .3s var(--ease-out), transform .3s var(--ease-out);
+}
+.toast.show { opacity: 1; transform: none; }
+.toast__icon { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; flex-shrink: 0; background: var(--color-success); color: #fff; }
+.toast__icon svg { width: 1rem; height: 1rem; }
+.toast--info .toast__icon { background: var(--color-science-blue); }
+
+/* =========================================================
+   Scroll reveal (JS-driven; safe without JS)
+   ========================================================= */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); will-change: opacity, transform; }
+.reveal.reveal--in { opacity: 1; transform: none; }
+
+/* =========================================================
+   Reduced motion — gracefully disable all of the above
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora { animation: none; }
+  .hero-content h1, .hero-content p, .hero-content .actions, .hero-form-wrap { animation: none; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  .card:hover, .card:hover .img-wrap img, .btn-primary:hover, .btn-warm:hover, .btn-alternate:hover { transform: none; }
+  .accordion-content { transition: none; }
+  * { scroll-behavior: auto !important; }
+}
 .muted { color: var(--color-scheme-text); opacity: 0.85; }
 
 /* Focus styles for accessibility */
